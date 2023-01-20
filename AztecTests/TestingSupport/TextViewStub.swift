@@ -1,7 +1,7 @@
 import UIKit
 @testable import Aztec
 
-class TextViewStub: Aztec.TextView {
+class TextViewStub: Aztec.AztecTextView {
     
     let attachmentDelegate = TextViewStubAttachmentDelegate()
     

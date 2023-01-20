@@ -9,13 +9,13 @@ public protocol TextViewAttachmentDelegate: AnyObject {
     /// This method requests from the delegate the image at the specified URL.
     ///
     /// - Parameters:
-    ///     - textView: the `TextView` the call has been made from.
+    ///     - textView: the `AztecTextView` the call has been made from.
     ///     - attachment: the attachment that is requesting the image
     ///     - imageURL: the url to download the image from.
     ///     - success: when the image is obtained, this closure should be executed.
     ///     - failure: if the image cannot be obtained, this closure should be executed.
     ///
-    func textView(_ textView: TextView,
+    func textView(_ textView: AztecTextView,
                   attachment: NSTextAttachment,
                   imageAt url: URL,
                   onSuccess success: @escaping (UIImage) -> Void,
@@ -30,7 +30,7 @@ public protocol TextViewAttachmentDelegate: AnyObject {
     ///
     /// - Returns: the requested `URL` where the image is stored, or nil if it's not yet available.
     ///
-    func textView(_ textView: TextView, urlFor imageAttachment: ImageAttachment) -> URL?
+    func textView(_ textView: AztecTextView, urlFor imageAttachment: ImageAttachment) -> URL?
 
     /// Called when an attachment doesn't have an available source URL to provide an image representation.
     ///
@@ -40,7 +40,7 @@ public protocol TextViewAttachmentDelegate: AnyObject {
     ///
     /// - Returns: an UIImage to represent the attachment graphically
     ///
-    func textView(_ textView: TextView, placeholderFor attachment: NSTextAttachment) -> UIImage
+    func textView(_ textView: AztecTextView, placeholderFor attachment: NSTextAttachment) -> UIImage
 
     /// Called after a attachment is removed from the storage.
     ///
@@ -48,7 +48,7 @@ public protocol TextViewAttachmentDelegate: AnyObject {
     ///   - textView: The textView where the attachment was removed.
     ///   - attachment: The media attachment that was removed.
     ///
-    func textView(_ textView: TextView, deletedAttachment attachment: MediaAttachment)
+    func textView(_ textView: AztecTextView, deletedAttachment attachment: MediaAttachment)
 
     /// Called after an attachment is selected with a single tap.
     ///
@@ -57,7 +57,7 @@ public protocol TextViewAttachmentDelegate: AnyObject {
     ///   - attachment: the attachment that was selected.
     ///   - position: touch position relative to the textview.
     ///
-    func textView(_ textView: TextView, selected attachment: NSTextAttachment, atPosition position: CGPoint)
+    func textView(_ textView: AztecTextView, selected attachment: NSTextAttachment, atPosition position: CGPoint)
 
     /// Called after an attachment is deselected with a single tap.
     ///
@@ -66,7 +66,7 @@ public protocol TextViewAttachmentDelegate: AnyObject {
     ///   - attachment: the attachment that was deselected.
     ///   - position: touch position relative to the textView
     ///
-    func textView(_ textView: TextView, deselected attachment: NSTextAttachment, atPosition position: CGPoint)
+    func textView(_ textView: AztecTextView, deselected attachment: NSTextAttachment, atPosition position: CGPoint)
 }
 
 
@@ -82,7 +82,7 @@ public protocol TextViewAttachmentImageProvider: AnyObject {
     ///
     /// - Returns: True when supported, false otherwise.
     ///
-    func textView(_ textView: TextView, shouldRender attachment: NSTextAttachment) -> Bool
+    func textView(_ textView: AztecTextView, shouldRender attachment: NSTextAttachment) -> Bool
 
     /// Provides the Bounds required to represent a given attachment, within a specified line fragment.
     ///
@@ -93,7 +93,7 @@ public protocol TextViewAttachmentImageProvider: AnyObject {
     ///
     /// - Returns: Rect specifying the Bounds for the comment attachment
     ///
-    func textView(_ textView: TextView, boundsFor attachment: NSTextAttachment, with lineFragment: CGRect) -> CGRect
+    func textView(_ textView: AztecTextView, boundsFor attachment: NSTextAttachment, with lineFragment: CGRect) -> CGRect
 
     /// Provides the (Optional) Image Representation of the specified size, for a given Attachment.
     ///
@@ -104,7 +104,7 @@ public protocol TextViewAttachmentImageProvider: AnyObject {
     ///
     /// - Returns: (Optional) UIImage representation of the Comment Attachment.
     ///
-    func textView(_ textView: TextView, imageFor attachment: NSTextAttachment, with size: CGSize) -> UIImage?
+    func textView(_ textView: AztecTextView, imageFor attachment: NSTextAttachment, with size: CGSize) -> UIImage?
 }
 
 
@@ -123,35 +123,35 @@ public protocol TextViewFormattingDelegate: AnyObject {
 //
 public protocol TextViewPasteboardDelegate: AnyObject {
 
-    /// Called by the TextView when it's attempting to paste the contents of the pasteboard.
+    /// Called by the AztecTextView when it's attempting to paste the contents of the pasteboard.
     ///
     /// - Returns: True if the paste succeeded, false if it did not.
-    func tryPasting(in textView: TextView) -> Bool
+    func tryPasting(in textView: AztecTextView) -> Bool
 
-    /// Called by the TextView when it's attempting to paste a URL.
+    /// Called by the AztecTextView when it's attempting to paste a URL.
     ///
     /// - Returns: True if the paste succeeded, false if it did not.
-    func tryPastingURL(in textView: TextView) -> Bool
+    func tryPastingURL(in textView: AztecTextView) -> Bool
 
-    /// Called by the TextView when it's attempting to paste HTML content.
+    /// Called by the AztecTextView when it's attempting to paste HTML content.
     ///
     /// - Returns: True if the paste succeeded, false if it did not.
-    func tryPastingHTML(in textView: TextView) -> Bool
+    func tryPastingHTML(in textView: AztecTextView) -> Bool
 
-    /// Called by the TextView when it's attempting to paste an attributed string.
+    /// Called by the AztecTextView when it's attempting to paste an attributed string.
     ///
     /// - Returns: True if the paste succeeded, false if it did not.
-    func tryPastingAttributedString(in textView: TextView) -> Bool
+    func tryPastingAttributedString(in textView: AztecTextView) -> Bool
 
-    /// Called by the TextView when it's attempting to paste a string.
+    /// Called by the AztecTextView when it's attempting to paste a string.
     ///
     /// - Returns: True if the paste succeeded, false if it did not.
-    func tryPastingString(in textView: TextView) -> Bool
+    func tryPastingString(in textView: AztecTextView) -> Bool
 }
 
-// MARK: - TextView
+// MARK: - AztecTextView
 //
-open class TextView: UITextView {
+open class AztecTextView: UITextView {
 
     // MARK: - Aztec Delegates
 
@@ -1859,7 +1859,7 @@ open class TextView: UITextView {
 
 // MARK: - Single line attributes removal
 //
-private extension TextView {
+private extension AztecTextView {
 
     // MARK: - WORKAROUND: Removing paragraph styles after deleting the last character in the current line.
 
@@ -2092,7 +2092,7 @@ private extension TextView {
 
 // MARK: - TextStorageImageProvider
 //
-extension TextView: TextStorageAttachmentsDelegate {
+extension AztecTextView: TextStorageAttachmentsDelegate {
 
     func storage(
         _ storage: TextStorage,
@@ -2158,10 +2158,10 @@ extension TextView: TextStorageAttachmentsDelegate {
 //
 @objc class AttachmentGestureRecognizerDelegate: NSObject, UIGestureRecognizerDelegate {
 
-    private weak var textView: TextView?
+    private weak var textView: AztecTextView?
     fileprivate var currentSelectedAttachment: MediaAttachment?
 
-    public init(textView: TextView) {
+    public init(textView: AztecTextView) {
         self.textView = textView
     }
 
@@ -2230,7 +2230,7 @@ extension TextView: TextStorageAttachmentsDelegate {
 
 // MARK: - Undo implementation
 //
-public extension TextView {
+public extension AztecTextView {
 
     /// Undoable Operation. Returns the Final Text Range, resulting from applying the undoable Operation
     /// Note that for Styling Operations, the Final Range will most likely match the Initial Range.

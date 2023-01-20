@@ -5,7 +5,7 @@ import XCTest
 class GutenpackAttachmentRendererTests: XCTestCase {
     
     func testShouldRender() {
-        let textView = TextView(
+        let textView = AztecTextView(
             defaultFont: UIFont.systemFont(ofSize: 12),
             defaultMissingImage: UIImage())
         let goodAttachment = GutenpackAttachment(name: "name", content: "content")
@@ -17,7 +17,7 @@ class GutenpackAttachmentRendererTests: XCTestCase {
     }
     
     func testBoundsForAttachment() {
-        let textView = TextView(
+        let textView = AztecTextView(
             defaultFont: UIFont.systemFont(ofSize: 12),
             defaultMissingImage: UIImage())
         
@@ -40,7 +40,7 @@ class GutenpackAttachmentRendererTests: XCTestCase {
     }
     
     func testImageForAttachmentOfWrongTypeReturnsNil() {
-        let textView = TextView(
+        let textView = AztecTextView(
             defaultFont: UIFont.systemFont(ofSize: 12),
             defaultMissingImage: UIImage())
         let attachment = NSTextAttachment(data: nil, ofType: nil)
@@ -50,7 +50,7 @@ class GutenpackAttachmentRendererTests: XCTestCase {
     }
     
     func testImageForAttachment() {
-        let textView = TextView(
+        let textView = AztecTextView(
             defaultFont: UIFont.systemFont(ofSize: 12),
             defaultMissingImage: UIImage())
         let attachment = GutenpackAttachment(name: "name", content: "content")

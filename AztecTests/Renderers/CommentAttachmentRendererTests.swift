@@ -22,7 +22,7 @@ class CommentAttachmentRendererTests: XCTestCase {
     }
     
     func testBoundsForAttachment() {
-        let textView = TextView(
+        let textView = AztecTextView(
             defaultFont: UIFont.systemFont(ofSize: 12),
             defaultMissingImage: UIImage())
         

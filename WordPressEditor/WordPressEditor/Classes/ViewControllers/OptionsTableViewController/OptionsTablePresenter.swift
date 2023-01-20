@@ -9,12 +9,12 @@ public class OptionsTablePresenter: NSObject {
     public typealias OnSelectHandler = (_ selected: Int) -> Void
     
     private var optionsTableViewController: OptionsTableViewController?
-    private unowned let presentingTextView: TextView
+    private unowned let presentingTextView: AztecTextView
     private unowned let presentingViewController: UIViewController
     
     // MARK: - Initializers
     
-    public init(presentingViewController: UIViewController, presentingTextView: TextView) {
+    public init(presentingViewController: UIViewController, presentingTextView: AztecTextView) {
         self.presentingTextView = presentingTextView
         self.presentingViewController = presentingViewController
     }

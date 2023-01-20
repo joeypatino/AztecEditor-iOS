@@ -11,7 +11,7 @@ class WordpressPluginTests: XCTestCase {
     let pluginManager: PluginManager = {
         let pluginManager = PluginManager()
         let systemFont = UIFont.systemFont(ofSize: UIFont.systemFontSize)
-        let textView = TextView(defaultFont: systemFont, defaultMissingImage: emptyImage)
+        let textView = AztecTextView(defaultFont: systemFont, defaultMissingImage: emptyImage)
         
         pluginManager.load(WordPressPlugin(), in: textView)
 

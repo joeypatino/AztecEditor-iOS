@@ -19,7 +19,7 @@ open class Plugin {
     
     /// Method plugins can use to execute extra code when loaded.
     ///
-    open func loaded(textView: TextView) {}
+    open func loaded(textView: AztecTextView) {}
 
     // MARK: - Equatable
     

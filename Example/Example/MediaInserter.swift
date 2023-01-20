@@ -12,11 +12,11 @@ class MediaInserter
         static let videoURL = ProgressUserInfoKey("videoURL")
     }
     
-    let richTextView: TextView
+    let richTextView: AztecTextView
 
     var attachmentTextAttributes: [NSAttributedString.Key: Any]
 
-    init(textView: TextView, attachmentTextAttributes: [NSAttributedString.Key: Any]) {
+    init(textView: AztecTextView, attachmentTextAttributes: [NSAttributedString.Key: Any]) {
         self.richTextView = textView
         self.attachmentTextAttributes = attachmentTextAttributes
     }

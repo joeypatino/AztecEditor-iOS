@@ -5,7 +5,7 @@ import XCTest
 class HTMLAttachmentRendererTests: XCTestCase {
     
     func testShouldRender() {
-        let textView = TextView(
+        let textView = AztecTextView(
             defaultFont: UIFont.systemFont(ofSize: 12),
             defaultMissingImage: UIImage())
         let goodAttachment = HTMLAttachment()
@@ -17,7 +17,7 @@ class HTMLAttachmentRendererTests: XCTestCase {
     }
     
     func testBoundsForAttachment() {
-        let textView = TextView(
+        let textView = AztecTextView(
             defaultFont: UIFont.systemFont(ofSize: 12),
             defaultMissingImage: UIImage())
         
@@ -43,7 +43,7 @@ class HTMLAttachmentRendererTests: XCTestCase {
     }
     
     func testImageForAttachmentOfWrongTypeReturnsNil() {
-        let textView = TextView(
+        let textView = AztecTextView(
             defaultFont: UIFont.systemFont(ofSize: 12),
             defaultMissingImage: UIImage())
         let attachment = NSTextAttachment(data: nil, ofType: nil)

@@ -8,7 +8,7 @@ open class AztecTextViewPasteboardDelegate: TextViewPasteboardDelegate {
     ///
     /// - Returns: True if the paste succeeds, false if it does not.
     ///
-    open func tryPasting(in textView: TextView) -> Bool {
+    open func tryPasting(in textView: AztecTextView) -> Bool {
         return tryPastingURL(in: textView)
             || tryPastingHTML(in: textView)
             || tryPastingAttributedString(in: textView)
@@ -19,7 +19,7 @@ open class AztecTextViewPasteboardDelegate: TextViewPasteboardDelegate {
     ///
     /// - Returns: True if the paste succeeds, false if it does not.
     ///
-    open func tryPastingURL(in textView: TextView) -> Bool {
+    open func tryPastingURL(in textView: AztecTextView) -> Bool {
         guard UIPasteboard.general.hasURLs,
             let url = UIPasteboard.general.url else {
                 return false
@@ -43,7 +43,7 @@ open class AztecTextViewPasteboardDelegate: TextViewPasteboardDelegate {
     ///
     /// - Returns: True if the paste succeeds, false if it does not.
     ///
-    open func tryPastingHTML(in textView: TextView) -> Bool {
+    open func tryPastingHTML(in textView: AztecTextView) -> Bool {
         guard let html = UIPasteboard.general.html(),
             textView.storage.htmlConverter.isSupported(html) else {
                 return false
@@ -61,7 +61,7 @@ open class AztecTextViewPasteboardDelegate: TextViewPasteboardDelegate {
     ///
     /// - Returns: True if the paste succeeds, false if it does not.
     ///
-    open func tryPastingAttributedString(in textView: TextView) -> Bool {
+    open func tryPastingAttributedString(in textView: AztecTextView) -> Bool {
         guard let string = UIPasteboard.general.attributedString() else {
             return false
         }
@@ -111,7 +111,7 @@ open class AztecTextViewPasteboardDelegate: TextViewPasteboardDelegate {
     ///
     /// - Returns: True if the paste succeeds, false if it does not.
     ///
-    open func tryPastingString(in textView: TextView) -> Bool {
+    open func tryPastingString(in textView: AztecTextView) -> Bool {
         guard let string = UIPasteboard.general.attributedString() else {
             return false
         }

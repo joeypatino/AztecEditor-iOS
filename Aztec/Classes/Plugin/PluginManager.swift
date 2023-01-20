@@ -11,7 +11,7 @@ class PluginManager {
     
     /// Loads a plugins.
     ///
-    func load(_ plugin: Plugin, in textView: TextView) {
+    func load(_ plugin: Plugin, in textView: AztecTextView) {
         guard !plugins.contains(where: { $0 == plugin }) else {
             assertionFailure()
             return

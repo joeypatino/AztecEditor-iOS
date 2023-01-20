@@ -4,11 +4,11 @@ import UIKit
 
 class TextViewStubAttachmentDelegate: TextViewAttachmentDelegate, TextViewAttachmentImageProvider {
 
-    func textView(_ textView: TextView, attachment: NSTextAttachment, imageAt url: URL, onSuccess success: @escaping (UIImage) -> Void, onFailure failure: @escaping () -> Void) {
+    func textView(_ textView: AztecTextView, attachment: NSTextAttachment, imageAt url: URL, onSuccess success: @escaping (UIImage) -> Void, onFailure failure: @escaping () -> Void) {
         // NO OP!
     }
 
-    func textView(_ textView: TextView, placeholderFor attachment: NSTextAttachment) -> UIImage {
+    func textView(_ textView: AztecTextView, placeholderFor attachment: NSTextAttachment) -> UIImage {
         return placeholderImage(for: attachment)
     }
 
@@ -27,29 +27,29 @@ class TextViewStubAttachmentDelegate: TextViewAttachmentDelegate, TextViewAttach
         return placeholderImage
     }
 
-    func textView(_ textView: TextView, urlFor imageAttachment: ImageAttachment) -> URL? {
+    func textView(_ textView: AztecTextView, urlFor imageAttachment: ImageAttachment) -> URL? {
         return nil
     }
 
-    func textView(_ textView: TextView, deletedAttachment attachment: MediaAttachment) {
+    func textView(_ textView: AztecTextView, deletedAttachment attachment: MediaAttachment) {
 
     }
 
-    func textView(_ textView: TextView, selected attachment: NSTextAttachment, atPosition position: CGPoint) {
+    func textView(_ textView: AztecTextView, selected attachment: NSTextAttachment, atPosition position: CGPoint) {
     }
     
-    func textView(_ textView: TextView, deselected attachment: NSTextAttachment, atPosition position: CGPoint) {        
+    func textView(_ textView: AztecTextView, deselected attachment: NSTextAttachment, atPosition position: CGPoint) {        
     }
 
-    func textView(_ textView: TextView, shouldRender attachment: NSTextAttachment) -> Bool {
+    func textView(_ textView: AztecTextView, shouldRender attachment: NSTextAttachment) -> Bool {
         return true
     }
 
-    func textView(_ textView: TextView, boundsFor attachment: NSTextAttachment, with lineFragment: CGRect) -> CGRect {
+    func textView(_ textView: AztecTextView, boundsFor attachment: NSTextAttachment, with lineFragment: CGRect) -> CGRect {
         return CGRect.zero
     }
 
-    func textView(_ textView: TextView, imageFor attachment: NSTextAttachment, with size: CGSize) -> UIImage? {
+    func textView(_ textView: AztecTextView, imageFor attachment: NSTextAttachment, with size: CGSize) -> UIImage? {
         return nil
     }
 }

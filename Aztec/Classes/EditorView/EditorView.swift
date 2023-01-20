@@ -5,7 +5,7 @@ import UIKit
 ///
 public class EditorView: UIView {
     public let htmlTextView: UITextView
-    public let richTextView: TextView
+    public let richTextView: AztecTextView
     public var htmlStorage: HTMLStorage {
         guard let htmlStorage = htmlTextView.textStorage as? HTMLStorage else {
             fatalError("If this happens, something is very off on the init config")
@@ -101,7 +101,7 @@ public class EditorView: UIView {
     
     public required init?(coder aDecoder: NSCoder) {
         guard let htmlTextView = aDecoder.decodeObject(forKey: EditorView.htmlTextViewKey) as? UITextView,
-            let richTextView = aDecoder.decodeObject(forKey: EditorView.richTextViewKey) as? TextView else {
+            let richTextView = aDecoder.decodeObject(forKey: EditorView.richTextViewKey) as? AztecTextView else {
                 return nil
         }
         
@@ -126,7 +126,7 @@ public class EditorView: UIView {
         layoutManager.addTextContainer(container)
 
         self.htmlTextView = UITextView(frame: .zero, textContainer: container)
-        self.richTextView = TextView(defaultFont: defaultFont, defaultParagraphStyle: defaultParagraphStyle, defaultMissingImage: defaultMissingImage)
+        self.richTextView = AztecTextView(defaultFont: defaultFont, defaultParagraphStyle: defaultParagraphStyle, defaultMissingImage: defaultMissingImage)
 
         htmlTextView.smartInsertDeleteType = .no
         htmlTextView.smartDashesType = .no

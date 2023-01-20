@@ -11,7 +11,7 @@ class EditorDemoController: UIViewController {
         return self.createToolbar()
     }()
     
-    private var richTextView: TextView {
+    private var richTextView: AztecTextView {
         get {
             return editorView.richTextView
         }
@@ -49,7 +49,7 @@ class EditorDemoController: UIViewController {
         return editorView
     }()
     
-    private func setupRichTextView(_ textView: TextView) {
+    private func setupRichTextView(_ textView: AztecTextView) {
         if wordPressMode {
             textView.load(WordPressPlugin())
         }
@@ -328,7 +328,7 @@ class EditorDemoController: UIViewController {
     }
 
 
-    private func configureDefaultProperties(for textView: TextView, accessibilityLabel: String) {
+    private func configureDefaultProperties(for textView: AztecTextView, accessibilityLabel: String) {
         textView.accessibilityLabel = accessibilityLabel
         textView.font = Constants.defaultContentFont
         textView.keyboardDismissMode = .interactive

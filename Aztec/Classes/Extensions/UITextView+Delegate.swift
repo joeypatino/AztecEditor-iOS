@@ -6,7 +6,7 @@ extension UITextView {
     /// Notifies the delegate of a text change.
     ///
     final func notifyTextViewDidChange() {
-        if let textView = self as? TextView, !textView.shouldNotifyOfNonUserChanges {
+        if let textView = self as? AztecTextView, !textView.shouldNotifyOfNonUserChanges {
             return
         }
         delegate?.textViewDidChange?(self)

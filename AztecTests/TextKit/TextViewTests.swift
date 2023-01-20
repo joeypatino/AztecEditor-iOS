@@ -22,11 +22,11 @@ class TextViewTests: XCTestCase {
     }
 
 
-    // MARK: - TextView construction
+    // MARK: - AztecTextView construction
 
-    func createTextViewWithContent() -> TextView {
+    func createTextViewWithContent() -> AztecTextView {
         let paragraph = "Lorem ipsum dolar sit amet.\n"
-        let richTextView = Aztec.TextView(defaultFont: UIFont.systemFont(ofSize: 14), defaultMissingImage: UIImage())
+        let richTextView = Aztec.AztecTextView(defaultFont: UIFont.systemFont(ofSize: 14), defaultMissingImage: UIImage())
         richTextView.textAttachmentDelegate = attachmentDelegate
         let attributes = [NSAttributedString.Key.paragraphStyle : NSParagraphStyle()]
         let templateString = NSMutableAttributedString(string: paragraph, attributes: attributes)
@@ -44,7 +44,7 @@ class TextViewTests: XCTestCase {
 
     func testTextViewReferencesStorage() {
 
-        let textView = Aztec.TextView(defaultFont: UIFont.systemFont(ofSize: 14), defaultMissingImage: UIImage())
+        let textView = Aztec.AztecTextView(defaultFont: UIFont.systemFont(ofSize: 14), defaultMissingImage: UIImage())
 
         textView.text = "Foo"
         XCTAssert(textView.text == "Foo")
@@ -65,7 +65,7 @@ class TextViewTests: XCTestCase {
     // MARK: - Test Index Wrangling
 
     func testMaxIndex() {
-        let textView = Aztec.TextView(defaultFont: UIFont.systemFont(ofSize: 14), defaultMissingImage: UIImage())
+        let textView = Aztec.AztecTextView(defaultFont: UIFont.systemFont(ofSize: 14), defaultMissingImage: UIImage())
 
         textView.text = "foo"
 
@@ -78,7 +78,7 @@ class TextViewTests: XCTestCase {
     }
 
     func testAdjustedIndex() {
-        let textView = Aztec.TextView(defaultFont: UIFont.systemFont(ofSize: 14), defaultMissingImage: UIImage())
+        let textView = Aztec.AztecTextView(defaultFont: UIFont.systemFont(ofSize: 14), defaultMissingImage: UIImage())
 
         textView.text = "foobarbaz"
 
@@ -258,7 +258,7 @@ class TextViewTests: XCTestCase {
 
     // MARK: - Test Attributes Exist
 
-    func check(textView: TextView, range:NSRange, forIndentifier identifier: FormattingIdentifier) -> Bool {
+    func check(textView: AztecTextView, range:NSRange, forIndentifier identifier: FormattingIdentifier) -> Bool {
         return textView.formattingIdentifiersSpanningRange(range).contains(identifier)
     }
 

@@ -99,8 +99,8 @@ class BlockquoteFormatterTests: XCTestCase {
 }
 
 private extension BlockquoteFormatterTests {
-    var testTextView: TextView {
-        let view = TextView(defaultFont: UIFont.systemFont(ofSize: 14), defaultMissingImage: UIImage())
+    var testTextView: AztecTextView {
+        let view = AztecTextView(defaultFont: UIFont.systemFont(ofSize: 14), defaultMissingImage: UIImage())
         view.text = plainText
         return view
     }

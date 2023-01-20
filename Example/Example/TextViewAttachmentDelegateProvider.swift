@@ -15,7 +15,7 @@ class TextViewAttachmentDelegateProvider: NSObject, TextViewAttachmentDelegate {
         self.attachmentTextAttributes = attachmentTextAttributes
     }
 
-    func textView(_ textView: TextView, attachment: NSTextAttachment, imageAt url: URL, onSuccess success: @escaping (UIImage) -> Void, onFailure failure: @escaping () -> Void) {
+    func textView(_ textView: AztecTextView, attachment: NSTextAttachment, imageAt url: URL, onSuccess success: @escaping (UIImage) -> Void, onFailure failure: @escaping () -> Void) {
 
         switch attachment {
         case let videoAttachment as VideoAttachment:
@@ -38,7 +38,7 @@ class TextViewAttachmentDelegateProvider: NSObject, TextViewAttachmentDelegate {
         }
     }
 
-    func textView(_ textView: TextView, placeholderFor attachment: NSTextAttachment) -> UIImage {
+    func textView(_ textView: AztecTextView, placeholderFor attachment: NSTextAttachment) -> UIImage {
         return placeholderImage(for: attachment)
     }
 
@@ -58,7 +58,7 @@ class TextViewAttachmentDelegateProvider: NSObject, TextViewAttachmentDelegate {
         return placeholderImage
     }
 
-    func textView(_ textView: TextView, urlFor imageAttachment: ImageAttachment) -> URL? {
+    func textView(_ textView: AztecTextView, urlFor imageAttachment: ImageAttachment) -> URL? {
         guard let image = imageAttachment.image else {
             return nil
         }
@@ -66,11 +66,11 @@ class TextViewAttachmentDelegateProvider: NSObject, TextViewAttachmentDelegate {
         return image.saveToTemporaryFile()
     }
 
-    func textView(_ textView: TextView, deletedAttachment attachment: MediaAttachment) {
+    func textView(_ textView: AztecTextView, deletedAttachment attachment: MediaAttachment) {
         print("Attachment \(attachment.identifier) removed.\n")
     }
 
-    func textView(_ textView: TextView, selected attachment: NSTextAttachment, atPosition position: CGPoint) {
+    func textView(_ textView: AztecTextView, selected attachment: NSTextAttachment, atPosition position: CGPoint) {
         switch attachment {
         case let attachment as HTMLAttachment:
             displayUnknownHtmlEditor(for: attachment, in: textView)
@@ -81,7 +81,7 @@ class TextViewAttachmentDelegateProvider: NSObject, TextViewAttachmentDelegate {
         }
     }
 
-    func textView(_ textView: TextView, deselected attachment: NSTextAttachment, atPosition position: CGPoint) {
+    func textView(_ textView: AztecTextView, deselected attachment: NSTextAttachment, atPosition position: CGPoint) {
         deselected(in: textView, textAttachment: attachment, atPosition: position)
     }
 
@@ -90,7 +90,7 @@ class TextViewAttachmentDelegateProvider: NSObject, TextViewAttachmentDelegate {
         mediaAttachment.message = nil
     }
 
-    func selected(in textView: TextView, textAttachment attachment: MediaAttachment, atPosition position: CGPoint) {
+    func selected(in textView: AztecTextView, textAttachment attachment: MediaAttachment, atPosition position: CGPoint) {
         if (currentSelectedAttachment == attachment) {
             displayActions(in: textView, forAttachment: attachment, position: position)
         } else {
@@ -110,7 +110,7 @@ class TextViewAttachmentDelegateProvider: NSObject, TextViewAttachmentDelegate {
         }
     }
 
-    func deselected(in textView: TextView,textAttachment attachment: NSTextAttachment, atPosition position: CGPoint) {
+    func deselected(in textView: AztecTextView,textAttachment attachment: NSTextAttachment, atPosition position: CGPoint) {
         currentSelectedAttachment = nil
         if let mediaAttachment = attachment as? MediaAttachment {
             resetMediaAttachmentOverlay(mediaAttachment)
@@ -183,7 +183,7 @@ private extension TextViewAttachmentDelegateProvider {
 //
 extension TextViewAttachmentDelegateProvider {
     
-    func displayActions(in textView: TextView, forAttachment attachment: MediaAttachment, position: CGPoint) {
+    func displayActions(in textView: AztecTextView, forAttachment attachment: MediaAttachment, position: CGPoint) {
         let mediaID = attachment.identifier
         let title: String = NSLocalizedString("Media Options", comment: "Title for action sheet with media options.")
         let message: String? = nil
@@ -228,7 +228,7 @@ extension TextViewAttachmentDelegateProvider {
         baseController.present(alertController, animated:true, completion: nil)
     }
 
-    func displayDetailsForAttachment(in textView: TextView, _ attachment: ImageAttachment, position:CGPoint) {
+    func displayDetailsForAttachment(in textView: AztecTextView, _ attachment: ImageAttachment, position:CGPoint) {
 
         let caption = textView.caption(for: attachment)
         let detailsViewController = AttachmentDetailsViewController.controller(for: attachment, with: caption)
@@ -282,7 +282,7 @@ extension TextViewAttachmentDelegateProvider {
 //
 private extension TextViewAttachmentDelegateProvider {
 
-    func displayUnknownHtmlEditor(for attachment: HTMLAttachment, in textView: TextView) {
+    func displayUnknownHtmlEditor(for attachment: HTMLAttachment, in textView: AztecTextView) {
         let targetVC = UnknownEditorViewController(attachment: attachment)
         targetVC.onDidSave = { [weak self] html in
             textView.edit(attachment) { updated in

@@ -31,11 +31,11 @@ final public class CommentAttachmentRenderer {
 //
 extension CommentAttachmentRenderer: TextViewAttachmentImageProvider {
 
-    public func textView(_ textView: TextView, shouldRender attachment: NSTextAttachment) -> Bool {
+    public func textView(_ textView: AztecTextView, shouldRender attachment: NSTextAttachment) -> Bool {
         return attachment is CommentAttachment
     }
 
-    public func textView(_ textView: TextView, imageFor attachment: NSTextAttachment, with size: CGSize) -> UIImage? {
+    public func textView(_ textView: AztecTextView, imageFor attachment: NSTextAttachment, with size: CGSize) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
 
         // Either this is a comment attachment, or the logic is broken.
@@ -56,7 +56,7 @@ extension CommentAttachmentRenderer: TextViewAttachmentImageProvider {
         return result
     }
 
-    public func textView(_ textView: TextView, boundsFor attachment: NSTextAttachment, with lineFragment: CGRect) -> CGRect {
+    public func textView(_ textView: AztecTextView, boundsFor attachment: NSTextAttachment, with lineFragment: CGRect) -> CGRect {
         let message = messageAttributedString()
 
         // Either this is a comment attachment, or the logic is broken.

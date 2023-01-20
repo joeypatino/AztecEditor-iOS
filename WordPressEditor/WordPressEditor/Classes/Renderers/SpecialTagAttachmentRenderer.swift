@@ -19,7 +19,7 @@ final public class SpecialTagAttachmentRenderer {
 //
 extension SpecialTagAttachmentRenderer: TextViewAttachmentImageProvider {
 
-    public func textView(_ textView: TextView, shouldRender attachment: NSTextAttachment) -> Bool {
+    public func textView(_ textView: AztecTextView, shouldRender attachment: NSTextAttachment) -> Bool {
         guard let commentAttachment = attachment as? CommentAttachment else {
             return false
         }
@@ -27,7 +27,7 @@ extension SpecialTagAttachmentRenderer: TextViewAttachmentImageProvider {
         return Tags.supported.contains(commentAttachment.text)
     }
 
-    public func textView(_ textView: TextView, imageFor attachment: NSTextAttachment, with size: CGSize) -> UIImage? {
+    public func textView(_ textView: AztecTextView, imageFor attachment: NSTextAttachment, with size: CGSize) -> UIImage? {
         guard let attachment = attachment as? CommentAttachment else {
             return nil
         }
@@ -63,7 +63,7 @@ extension SpecialTagAttachmentRenderer: TextViewAttachmentImageProvider {
         return result
     }
 
-    public func textView(_ textView: TextView, boundsFor attachment: NSTextAttachment, with lineFragment: CGRect) -> CGRect {
+    public func textView(_ textView: AztecTextView, boundsFor attachment: NSTextAttachment, with lineFragment: CGRect) -> CGRect {
         let padding = textView.textContainer.lineFragmentPadding
         let width = lineFragment.width - padding * 2
 

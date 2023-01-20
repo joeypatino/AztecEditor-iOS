@@ -3,7 +3,7 @@ import Aztec
 
 class WordPressTextViewPasteboardDelegate: AztecTextViewPasteboardDelegate {
 
-    override func tryPastingURL(in textView: TextView) -> Bool {
+    override func tryPastingURL(in textView: AztecTextView) -> Bool {
 
         let selectedRange = textView.selectedRange
 
